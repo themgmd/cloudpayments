@@ -6,7 +6,7 @@ import (
 )
 
 func (cp *cloudPayments) Subscribe(params CreateSubscribeRequest) (*PaymentResponse, error) {
-	requestURL := cp.GenerateRequestURI(BaseURL, SubscriptionsGroup, CreateSubscriptionMethod)
+	requestURL := cp.GenerateRequestURI(baseURL, subscriptionsGroup, createSubscriptionMethod)
 
 	bt, err := json.Marshal(params)
 	if err != nil {

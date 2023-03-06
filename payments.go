@@ -6,7 +6,7 @@ import (
 )
 
 func (cp *cloudPayments) PayByCryptogram(params CryptoPayRequest) (*PaymentResponse, error) {
-	requestURL := cp.GenerateRequestURI(BaseURL, PaymentsGroup, CardsGroup, SinglePayMethod)
+	requestURL := cp.GenerateRequestURI(baseURL, paymentsGroup, cardsGroup, singlePayMethod)
 
 	bt, err := json.Marshal(params)
 	if err != nil {

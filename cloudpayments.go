@@ -1,18 +1,18 @@
 package cloudpayments
 
 const (
-	BaseURL = "api.cloudpayments.ru"
+	baseURL = "api.cloudpayments.ru"
 
-	PaymentsGroup   = "payments"
-	CardsGroup      = "cards"
-	SinglePayMethod = "charge"
+	paymentsGroup   = "payments"
+	cardsGroup      = "cards"
+	singlePayMethod = "charge"
 
-	SubscriptionsGroup       = "subscriptions"
-	CreateSubscriptionMethod = "create"
-	GetSubscriptionMethod    = "get"
-	FindSubscriptionMethod   = "find"
-	UpdateSubscriptionMethod = "update"
-	CancelSubscriptionMethod = "cancel"
+	subscriptionsGroup       = "subscriptions"
+	createSubscriptionMethod = "create"
+	getSubscriptionMethod    = "get"
+	findSubscriptionMethod   = "find"
+	updateSubscriptionMethod = "update"
+	cancelSubscriptionMethod = "cancel"
 )
 
 type CloudPayments interface {

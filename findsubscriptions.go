@@ -6,7 +6,7 @@ import (
 )
 
 func (cp *cloudPayments) FindSubscriptions(params FindSubscriptionsRequest) (*FindSubscriptionsResponse, error) {
-	requestURL := cp.GenerateRequestURI(BaseURL, SubscriptionsGroup, FindSubscriptionMethod)
+	requestURL := cp.GenerateRequestURI(baseURL, subscriptionsGroup, findSubscriptionMethod)
 
 	bt, err := json.Marshal(params)
 	if err != nil {

@@ -6,7 +6,7 @@ import (
 )
 
 func (cp *cloudPayments) Unsubscribe(params SubscribeRequest) (*PaymentResponse, error) {
-	requestURL := cp.GenerateRequestURI(BaseURL, SubscriptionsGroup, CancelSubscriptionMethod)
+	requestURL := cp.GenerateRequestURI(baseURL, subscriptionsGroup, cancelSubscriptionMethod)
 
 	bt, err := json.Marshal(params)
 	if err != nil {
