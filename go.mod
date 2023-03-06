@@ -1,3 +1,3 @@
-module github.com/onemgvv/cloudpayments-sdk
+module github.com/onemgvv/cloudpayments
 
 go 1.20
