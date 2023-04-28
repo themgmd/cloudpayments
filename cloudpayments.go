@@ -23,6 +23,7 @@ type CloudPayments interface {
 	SetSecret(secret string)
 	SetPublicID(pubID string)
 
+	Post3ds(params Post3dsRequest) (*PaymentResponse, error)
 	PayByCryptogram(params CryptoPayRequest) (*PaymentResponse, error)
 	Subscribe(params CreateSubscribeRequest) (*PaymentResponse, error)
 	UpdateSubscribe(params UpdateSubscribeRequest) (*PaymentResponse, error)
