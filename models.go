@@ -80,3 +80,8 @@ type UpdateSubscribeRequest struct {
 	Interval            Interval
 	Period              int
 }
+
+type Post3dsRequest struct {
+	TransactionId int
+	PaRes         string
+}

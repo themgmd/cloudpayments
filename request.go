@@ -2,6 +2,7 @@ package cloudpayments
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -22,10 +23,11 @@ func (cp *cloudPayments) GenerateRequestURI(baseURL string, parts ...string) str
 }
 
 func (cp *cloudPayments) NewRequest(url string, body []byte) ([]byte, error) {
-	client := &http.Client{}
+	var (
+		client     = &http.Client{}
+		bodyReader = bytes.NewReader(body)
+	)
 
-	bodyReader := bytes.NewReader(body)
-	
 	req, err := http.NewRequest(http.MethodPost, url, bodyReader)
 	if err != nil {
 		err = fmt.Errorf("http.NewRequest: %w", err)
@@ -35,11 +37,12 @@ func (cp *cloudPayments) NewRequest(url string, body []byte) ([]byte, error) {
 	req.SetBasicAuth(cp.publicID, cp.apiSecret)
 
 	resp, err := client.Do(req)
-	defer resp.Body.Close()
 	if err != nil {
 		err = fmt.Errorf("client.Do: %w", err)
 		return nil, err
 	}
+
+	defer resp.Body.Close()
 
 	bt, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -48,4 +51,20 @@ func (cp *cloudPayments) NewRequest(url string, body []byte) ([]byte, error) {
 	}
 
 	return bt, nil
+}
+
+func (cp *cloudPayments) GetPaymentResponse(requestURL string, data []byte) (*PaymentResponse, error) {
+	resp, err := cp.NewRequest(requestURL, data)
+	if err != nil {
+		err = fmt.Errorf("cp.NewRequest: %w", err)
+		return nil, err
+	}
+
+	var paymentResponse PaymentResponse
+	if err = json.Unmarshal(resp, &paymentResponse); err != nil {
+		err = fmt.Errorf("json.Unmarshal: %w", err)
+		return nil, err
+	}
+
+	return &paymentResponse, nil
 }

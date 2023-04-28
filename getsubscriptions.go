@@ -14,17 +14,10 @@ func (cp *cloudPayments) GetSubscription(params SubscribeRequest) (*PaymentRespo
 		return nil, err
 	}
 
-	resp, err := cp.NewRequest(requestURL, bt)
+	resp, err := cp.GetPaymentResponse(requestURL, bt)
 	if err != nil {
-		err = fmt.Errorf("cp.NewRequest: %w", err)
-		return nil, err
+		return nil, fmt.Errorf("cp.GetPaymentResponse: %w", err)
 	}
 
-	var paymentResponse PaymentResponse
-	if err = json.Unmarshal(resp, &paymentResponse); err != nil {
-		err = fmt.Errorf("json.Unmarshal: %w", err)
-		return nil, err
-	}
-
-	return &paymentResponse, nil
+	return resp, nil
 }

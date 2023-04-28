@@ -1,11 +1,15 @@
 package cloudpayments
 
 const (
+	HeaderXContentHMAC = "X-Content-HMAC"
+	HeaderContentHMAC  = "Content-HMAC"
+
 	baseURL = "api.cloudpayments.ru"
 
 	paymentsGroup   = "payments"
 	cardsGroup      = "cards"
 	singlePayMethod = "charge"
+	post3dsMethod   = "post3ds"
 
 	subscriptionsGroup       = "subscriptions"
 	createSubscriptionMethod = "create"
