@@ -1,6 +1,10 @@
 package cloudpayments
 
-import "time"
+import (
+	"time"
+
+	"github.com/guregu/null"
+)
 
 type Interval string
 
@@ -22,7 +26,7 @@ type Model map[string]interface{}
 
 type DefaultResponse struct {
 	Success bool
-	Message string
+	Message null.String
 }
 
 type PaymentResponse struct {
